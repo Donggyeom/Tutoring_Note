@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct linked_list {
 	int data;
@@ -7,28 +8,32 @@ typedef struct linked_list {
 
 int main()
 {
+	int i;
 	linked_list* head = NULL;
 	linked_list* point = NULL;
-	
-	linked_list list1;
-	linked_list list2;
-	linked_list list3;
-	linked_list list4;
 
-	list1.data = 2;
-	list2.data = 3;
-	list3.data = 4;
-	list4.data = 5;
 
-	head = &list1;
-	list1.next = &list2;
-	list2.next = &list3;
-	list3.next = &list4;
-	list4.next = NULL;
-	
+	head = (linked_list*)malloc(sizeof(linked_list));
 	point = head;
-	while (point != NULL) {
+
+	//데이터 1에서부터 10을 리스트에 저장하고 출력 for문 사용
+	for (i = 1; i < 11; i++)
+	{
+		point->data = i;
+		if (i < 10) {
+			point->next = (linked_list*)malloc(sizeof(linked_list));
+			point = point->next;
+		}
+		else {
+			point->next = NULL;
+		}
+
+	}
+	point = head;
+	while (point != NULL)
+	{
 		printf("%d ", point->data);
 		point = point->next;
 	}
+
 }
